@@ -34,9 +34,9 @@ for i, col in enumerate(all_columns, 1):
         ax.set_xticklabels(ax.get_xticklabels(), rotation=45)
         ax.set_ylabel('Number of Vehicles')
 plt.tight_layout()
+st.pyplot(plt)
 
 st.markdown("The vehicles csv contains basic info on over 50 thousand cars, including paint color, sell price, milage, model year, and make/model info. To help visualize the data, I have included a few charts for some of the quantitative columns.")
-
 
 
 plt.figure(figsize=(10, 5))
