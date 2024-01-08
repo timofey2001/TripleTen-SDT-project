@@ -24,19 +24,20 @@ num_rows = (len(all_columns) + 1) // 2
 plt.figure(figsize=(15, num_rows * 5))
 for i, col in enumerate(all_columns, 1):
     ax = plt.subplot(num_rows, 2, i)
-    ax.set_ylabel('Number of Vehicles')
     if cars[col].dtype in ['int64', 'float64']:
         sns.histplot(cars[col].dropna(), kde=False, bins=30, ax=ax)
+        ax.set_ylabel('Number of Vehicles')
     else:
         sns.countplot(x=col, data=cars, ax=ax)
     ax.set_title(f'Distribution of {col}')
     if col in cars.select_dtypes(include=['object', 'bool']).columns:
         ax.set_xticklabels(ax.get_xticklabels(), rotation=45)
+        ax.set_ylabel('Number of Vehicles')
 plt.tight_layout()
 
 st.markdown("The vehicles csv contains basic info on over 50 thousand cars, including paint color, sell price, milage, model year, and make/model info. To help visualize the data, I have included a few charts for some of the quantitative columns.")
 
-st.pyplot(fig)=
+st.pyplot(fig)
 
 
 plt.figure(figsize=(10, 5))
