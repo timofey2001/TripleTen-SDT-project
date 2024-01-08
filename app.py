@@ -37,7 +37,6 @@ plt.tight_layout()
 
 st.markdown("The vehicles csv contains basic info on over 50 thousand cars, including paint color, sell price, milage, model year, and make/model info. To help visualize the data, I have included a few charts for some of the quantitative columns.")
 
-st.pyplot(fig)
 
 
 plt.figure(figsize=(10, 5))
