@@ -30,12 +30,12 @@ car_models = cars["model"].unique().tolist()
 selected_car_model = st.selectbox("Choose a car model:", car_models)
 filtered_df = cars[cars["model"] == selected_car_model]
 price_distribution = filtered_df["price"].value_counts()
-plt.figure(figsize=(10, 6)) 
-plt.bar(price_distribution.index, price_distribution.values)
+plt.figure(figsize=(10, 6))
+sns.histplot(filtered_df["price"], bins=30)
 plt.xlabel("Car price ($)")
 plt.ylabel("Number of cars")
 plt.title(f"Price Distribution for {selected_car_model}")
-st.pyplot(plt)
+st.pyplot()
 
 if st.checkbox('Vehicle price compared to odometer') == True:
     plt.figure(figsize=(10, 6))
