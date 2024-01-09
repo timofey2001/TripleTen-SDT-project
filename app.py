@@ -35,7 +35,7 @@ sns.histplot(filtered_df["price"], bins=30)
 plt.xlabel("Car price ($)")
 plt.ylabel("Number of cars")
 plt.title(f"Price Distribution for {selected_car_model}")
-st.pyplot()
+st.pyplot(plt)
 
 if st.checkbox('Vehicle price compared to odometer') == True:
     plt.figure(figsize=(10, 6))
