@@ -43,7 +43,12 @@ if st.checkbox('Vehicle price compared to odometer') == True:
     plt.ylabel('Price')
     st.pyplot(plt)
 else:
-
+    plt.figure(figsize=(10, 6))
+    sns.scatterplot(x='days_listed', y='price', data=cars)
+    plt.title('Price vs Days listed')
+    plt.xlabel('Days Listed')
+    plt.ylabel('Price')
+    st.pyplot(plt)
 
 
 plt.ticklabel_format(style='plain', axis='x')
