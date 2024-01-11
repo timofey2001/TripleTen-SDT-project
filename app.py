@@ -1,5 +1,6 @@
 import streamlit as st
 import matplotlib.pyplot as plt 
+import plotly.express as pt
 import seaborn as sns 
 import altair as alt
 import pandas as pd
@@ -19,12 +20,9 @@ cars['paint_color'].fillna('Unknown', inplace=True)
 average_cylinders = cars.groupby(['model_year', 'model'])['cylinders'].transform('mean')
 cars['cylinders'].fillna(average_cylinders, inplace=True)
 
-plt.figure(figsize=(10, 5))
-plt.hist(cars['price'], bins=40, color='skyblue', edgecolor='black')
-plt.title('Vehicle Price Distribution')
-plt.xlabel('Price')
-plt.ylabel('Number of Vehicles')
-st.pyplot(plt)
+fig = pt.histogram(cars, x="price", title="Vehicle Price Distribution", labels={'price':'Vehicle Price', 'count':'Cars'}, nbins=200, range_x=[0,60000])
+fig.update_layout(yaxis_title="Number of Cars")
+st.plotly_chart(fig)
 
 car_models = cars["model"].unique().tolist()
 selected_car_model = st.selectbox("Choose a car model:", car_models)
@@ -45,12 +43,7 @@ if st.checkbox('Vehicle price compared to odometer') == True:
     plt.ylabel('Price')
     st.pyplot(plt)
 else:
-    plt.figure(figsize=(10, 6))
-    sns.scatterplot(x='days_listed', y='price', data=cars)
-    plt.title('Price vs Days listed')
-    plt.xlabel('Days Listed')
-    plt.ylabel('Price')
-    st.pyplot(plt)
+
 
 
 plt.ticklabel_format(style='plain', axis='x')
