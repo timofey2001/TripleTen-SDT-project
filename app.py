@@ -1,5 +1,4 @@
 import streamlit as st
-import matplotlib.pyplot as plt 
 import plotly.express as pt
 import seaborn as sns 
 import altair as alt
@@ -43,10 +42,6 @@ else:
     fig2.update_yaxes(title_text='Price')
 
 st.plotly_chart(fig2)
-
-st.plotly_chart(fig2)
-
-plt.ticklabel_format(style='plain', axis='x')
 
 st.markdown("Using the data in this chart we can see that the majority of vehicles sell for less than 20 thousand dollars.")
 
