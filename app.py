@@ -27,29 +27,24 @@ st.plotly_chart(fig)
 car_models = cars["model"].unique().tolist()
 selected_car_model = st.selectbox("Choose a car model:", car_models)
 filtered_df = cars[cars["model"] == selected_car_model]
-price_distribution = filtered_df["price"].value_counts()
-plt.figure(figsize=(10, 6))
-sns.histplot(filtered_df["price"], bins=30)
-plt.xlabel("Car price ($)")
-plt.ylabel("Number of cars")
-plt.title(f"Price Distribution for {selected_car_model}")
-st.pyplot(plt)
 
-if st.checkbox('Vehicle price compared to odometer') == True:
-    plt.figure(figsize=(10, 6))
-    sns.scatterplot(x='odometer', y='price', data=cars)
-    plt.title('Price vs Odometer')
-    plt.xlabel('Odometer (Mileage)')
-    plt.ylabel('Price')
-    st.pyplot(plt)
+fig1 = pt.histogram(filtered_df, x="price", nbins=30, title=f"Price Distribution for {selected_car_model}")
+fig1.update_xaxes(title_text='Car price ($)')
+fig1.update_yaxes(title_text='Number of cars')
+st.plotly_chart(fig1)
+
+if st.checkbox('Show Vehicles priced above $50,000'):
+    filtered_cars = cars[(cars['price'] > 50000) & (cars['price'] < 400000)]
+    filtered_cars = filtered_cars[filtered_cars['transmission'] == 'automatic']
+    fig2 = pt.scatter(filtered_cars, x='days_listed', y='price', title='Price vs Days Listed', color='vehicle_type')
 else:
-    plt.figure(figsize=(10, 6))
-    sns.scatterplot(x='days_listed', y='price', data=cars)
-    plt.title('Price vs Days listed')
-    plt.xlabel('Days Listed')
-    plt.ylabel('Price')
-    st.pyplot(plt)
+    fig2 = pt.scatter(cars, x='odometer', y='price', title='Price vs Odometer', color='vehicle_type')
+    fig2.update_xaxes(title_text='Odometer (Mileage)')
+    fig2.update_yaxes(title_text='Price')
 
+st.plotly_chart(fig2)
+
+st.plotly_chart(fig2)
 
 plt.ticklabel_format(style='plain', axis='x')
 
