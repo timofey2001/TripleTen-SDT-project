@@ -36,9 +36,9 @@ st.plotly_chart(fig1)
 if st.checkbox('Show Vehicles priced above $50,000'):
     filtered_cars = cars[(cars['price'] > 50000) & (cars['price'] < 400000)]
     filtered_cars = filtered_cars[filtered_cars['transmission'] == 'automatic']
-    fig2 = pt.scatter(filtered_cars, x='days_listed', y='price', title='Price vs Days Listed', color='vehicle_type')
+    fig2 = pt.scatter(filtered_cars, x='days_listed', y='price', title='Price vs Days Listed', color='type')
 else:
-    fig2 = pt.scatter(cars, x='odometer', y='price', title='Price vs Odometer', color='vehicle_type')
+    fig2 = pt.scatter(cars, x='odometer', y='price', title='Price vs Odometer', color='type')
     fig2.update_xaxes(title_text='Odometer (Mileage)')
     fig2.update_yaxes(title_text='Price')
 
